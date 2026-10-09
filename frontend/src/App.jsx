@@ -67,7 +67,7 @@ function App() {
             </h1>
 
             <p className="description">
-              Enter a hotel review and let our Machine Learning model analyze
+              Enter a review and let our Machine Learning model analyze
               whether it appears truthful or deceptive.
             </p>
 
@@ -75,7 +75,7 @@ function App() {
               <textarea
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
-                placeholder="Enter a hotel review here..."
+                placeholder="Enter a review here..."
                 rows="7"
               />
 
@@ -123,7 +123,7 @@ function App() {
               <h3>01</h3>
               <h4>Enter Review</h4>
               <p>
-                Provide the hotel review that you want to analyze.
+                Provide the review that you want to analyze.
               </p>
             </div>
 
