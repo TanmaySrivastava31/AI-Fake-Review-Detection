@@ -44,11 +44,13 @@ def predict():
     probabilities = model.predict_proba(review_tfidf)[0]
 
     confidence = max(probabilities) * 100
+    authenticity_score = probabilities[list(model.classes_).index("real")] * 100
 
     return jsonify({
-        "prediction": prediction,
-        "confidence": round(confidence, 2)
-    })
+    "prediction": prediction,
+    "confidence": round(confidence, 2),
+    "authenticity_score": round(authenticity_score, 2)
+})
 
 
 if __name__ == "__main__":

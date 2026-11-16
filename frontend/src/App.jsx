@@ -94,7 +94,7 @@ function App() {
 
                     <div
                       className={
-                        result.prediction?.toLowerCase() === "deceptive"
+                        result.prediction?.toLowerCase() === "fake"
                           ? "prediction fake"
                           : "prediction truthful"
                       }
@@ -108,6 +108,12 @@ function App() {
                         <strong>{Number(result.confidence).toFixed(2)}%</strong>
                       </p>
                     )}
+                    {result.authenticity_score !== undefined && (
+  <p>
+    Authenticity Score:{" "}
+    <strong>{Number(result.authenticity_score).toFixed(2)}%</strong>
+  </p>
+)}
                   </>
                 )}
               </div>
