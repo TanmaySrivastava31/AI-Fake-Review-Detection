@@ -4,6 +4,7 @@ import joblib
 
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.pipeline import FeatureUnion
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score, classification_report
@@ -74,11 +75,19 @@ X_train, X_test, y_train, y_test, category_train, category_test = train_test_spl
 print("\nTraining samples:", len(X_train))
 print("Testing samples:", len(X_test))
 
-vectorizer = TfidfVectorizer(
-    stop_words="english",
-    max_features=20000,
-    ngram_range=(1, 2)
-)
+vectorizer = FeatureUnion([
+    ("word", TfidfVectorizer(
+        stop_words="english",
+        max_features=20000,
+        ngram_range=(1, 2)
+    )),
+    ("char", TfidfVectorizer(
+        analyzer="char",
+        ngram_range=(3, 5),
+        max_features=30000,
+        sublinear_tf=True
+    ))
+])
 
 X_train_tfidf = vectorizer.fit_transform(X_train)
 X_test_tfidf = vectorizer.transform(X_test)
