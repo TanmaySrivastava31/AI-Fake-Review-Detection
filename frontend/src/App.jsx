@@ -109,10 +109,27 @@ function App() {
                       </p>
                     )}
                     {result.authenticity_score !== undefined && (
-  <p>
-    Authenticity Score:{" "}
-    <strong>{Number(result.authenticity_score).toFixed(2)}%</strong>
-  </p>
+  <div className="authenticity-container">
+    <div className="authenticity-header">
+      <span>Authenticity Score</span>
+      <strong>
+        {Number(result.authenticity_score).toFixed(2)}%
+      </strong>
+    </div>
+
+    <div className="authenticity-bar">
+      <div
+        className="authenticity-fill"
+        style={{
+          width: `${Math.max(0, Math.min(100, Number(result.authenticity_score)))}%`
+        }}
+      ></div>
+    </div>
+
+    <p className="authenticity-note">
+      AI-estimated authenticity score. Predictions are not guaranteed.
+    </p>
+  </div>
 )}
                   </>
                 )}
