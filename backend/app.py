@@ -33,7 +33,14 @@ def predict():
 
     review = data["review"]
 
-    if not review.strip():
+    if not isinstance(review, str):
+        return jsonify({
+            "error": "Review must be a text string"
+        }), 400
+
+    review = review.strip()
+
+    if not review:
         return jsonify({
             "error": "Review cannot be empty"
         }), 400
